@@ -31,7 +31,26 @@ class Weather {
 // TODO: Complete the WeatherService class
 class WeatherService {
   // TODO: Define the baseURL, API key, and city name properties
+  private baseURL: string;
+  private apiKey: string = `${process.env.WEATHER_API_KEY}`;
+  private cityName: string;
+
+  constructor() {
+    this.baseURL = 'https://api.openweathermap.org/data/2.5/weather';
+    this.apiKey;
+    this.cityName = '';
+  }
   // TODO: Create fetchLocationData method
+  fetchLocationData(query: string) {
+    return fetch(`https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${this.apiKey}`)
+      .then((response) => response.json())
+      .then((data) => {
+        return {
+          lat: data.coord.lat,
+          lon: data.coord.lon,
+        };
+      });
+  }
   // private async fetchLocationData(query: string) {}
   // TODO: Create destructureLocationData method
   // private destructureLocationData(locationData: Coordinates): Coordinates {}
