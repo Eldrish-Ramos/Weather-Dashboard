@@ -51,8 +51,21 @@ class WeatherService {
         };
       });
   }
-  // private async fetchLocationData(query: string) {}
+  private async fetchLocationData(query: string) {
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${this.apiKey}`);
+    const data = await response.json();
+    return {
+      lat: data.coord.lat,
+      lon: data.coord.lon,
+    };
+  }
   // TODO: Create destructureLocationData method
+  destructureLocationData(locationData: Coordinates) {
+    return {
+      lat: locationData.lat,
+      lon: locationData.lon,
+    };
+  }
   // private destructureLocationData(locationData: Coordinates): Coordinates {}
   // TODO: Create buildGeocodeQuery method
   // private buildGeocodeQuery(): string {}
