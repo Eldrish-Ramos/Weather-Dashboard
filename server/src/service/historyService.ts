@@ -1,3 +1,5 @@
+import * as fs from 'fs';
+
 // TODO: Define a City class with name and id properties
 class City {
   name: string;
@@ -13,9 +15,7 @@ class City {
 // TODO: Complete the HistoryService class
 class HistoryService {
   // TODO: Define a read method that reads from the searchHistory.json file
-  readonly cities: City[] = [];
   private async read() {
-    const fs = require('fs');
     const data = fs.readFileSync('searchHistory.json', 'utf8');
     console.log(data);
     return data;
